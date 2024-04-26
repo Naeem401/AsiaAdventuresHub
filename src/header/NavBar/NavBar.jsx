@@ -1,11 +1,19 @@
 import { useState } from "react";
 import { MdMenu } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink} from "react-router-dom";
+import useAuth from "../../Hook/useAuth";
+import toast from "react-hot-toast";
 
 
 const NavBar = () => {
     const [sideOpen, setSideOpen] = useState(false);
+    const { user, signOutUser } = useAuth() || {};
+    const handleLogOut = () => {
+        signOutUser()
+          .then((result) => toast.success("successfully Logout"))
+          .catch((err) => toast.error(err));
+      };
     return (
         <div className="max-w-[1920px] mx-auto mb-0">
             <header className="bg-white shadow-lg  flex w-full dark:bg-[#120505] px-2 md:px-[50px] lg:px-[80px] xl:px-[120px] 2xl:px-[150px]">
@@ -87,20 +95,27 @@ const NavBar = () => {
 
                         </label>
                     </div>
-                   <Link to='/login'>
-                   <button
-                        className="bg-[#FF497C] hover:bg-[#ab3154]  duration-200 text-white font-bold px-4 xl:px-6 py-1 rounded mr-2"
-                    >
-                        Login
-                    </button>
-                   </Link>
-                    <Link to='/register'>
-                    <button
-                        className="bg-[#FF497C] hover:bg-[#ab3154]  duration-200 text-white font-bold px-4 xl:px-6 py-1 rounded"
-                    >
-                        Register
-                    </button>
-                    </Link>
+                   <div>
+                   {
+                        user ? <button onClick={() => handleLogOut()} className="bg-[#FF497C] hover:bg-[#ab3154]  duration-200 text-white font-bold px-2 xl:px-6 py-1 rounded mr-2">LogOut</button> : <div className="flex items-center">
+                        <Link to='/login'>
+                         <button
+                              className="bg-[#FF497C] hover:bg-[#ab3154]  duration-200 text-white font-bold px-4 xl:px-6 py-1 rounded mr-2"
+                          >
+                              Login
+                          </button>
+                         </Link>
+                          <Link to='/register'>
+                          <button
+                              className="bg-[#FF497C] hover:bg-[#ab3154]  duration-200 text-white font-bold px-4 xl:px-6 py-1 rounded"
+                          >
+                              Register
+                          </button>
+                          </Link>
+                        </div>
+                    }
+                   </div>
+                  
                 </div>
                 <button
                     onClick={() => setSideOpen(!sideOpen)}

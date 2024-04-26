@@ -1,12 +1,46 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import bg from '../../assets/img/bg3.jpg'
+import useAuth from '../../Hook/useAuth';
+import toast from 'react-hot-toast';
 const LoginPage = () => {
+    const navigate = useNavigate();
+    const {
+      user,
+      signInUser,
+      googleSignIn,
+      setLoading,
+      loading
+    } = useAuth();
+      const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        setLoading(false);
+        navigate(location?.state ? location.state : "/");
+        toast.success("Login successful");
+      })
+      .catch((err) => {
+        setLoading(false);
+        toast.error(err.message);
+      });
+  };
     const handelLogin = e => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password)
+         // Sign In
+    signInUser(email, password)
+      .then((result) => {
+        setLoading(false);
+        navigate(location?.state ? location.state : "/");
+        toast.success("Login successful");
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoading(false);
+        toast.error(err.message);
+      });
     }
     return (
         <div className='object-cover bg-opacity-80 bg-no-repeat min-h-[calc(100vh-46px)] flex justify-center items-center' style={{ backgroundImage: `url(${bg})` }}>
@@ -30,7 +64,7 @@ const LoginPage = () => {
                 <div className="mt-4">
                     <p >Or login with:</p>
                     <div>
-                        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
+                        <button onClick={()=> handleGoogleSignIn()} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
                             Google
                         </button>
                         <button className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
