@@ -19,6 +19,17 @@ const handelSubmit = e => {
         userName, userEmail, tourists_spot_name, country_Name, average_cost, image, location, seasonality, travel_time, totalVisitorsPerYear, short_description
     }
     console.log(info)
+    fetch("http://localhost:5000/addTouristsSpot", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body:JSON.stringify(info)
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data?.insertedId) {
+          alert("bhai data insert hoice")
+        }
+      })
 }
 
     return (
@@ -82,8 +93,6 @@ const handelSubmit = e => {
                 <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 w-full">Add</button>
             </form>
             </div>
-            
-           
         </div>
         </div>
         
