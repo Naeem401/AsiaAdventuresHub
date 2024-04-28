@@ -38,7 +38,7 @@ const NavBar = () => {
                         </li>
                         <li>
                             <NavLink
-                                to="/"
+                                to="/tourists-spot-all"
                                 className={({ isActive, isPending }) =>
                                     isPending
                                         ? "pending"
