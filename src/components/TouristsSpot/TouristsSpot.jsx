@@ -6,9 +6,9 @@ const TouristsSpot = ({spot}) => {
     return (
         <div className="shadow-md border">
             <img src={image} alt="" />
-            <div className="bg-gray-50 p-4">
-                <h2 className="font-bold text-xl text-black">{tourists_spot_name}</h2>
-                <h4 className="font-semibold test-[18px] text-black mt-2">Country: {country_Name}</h4>
+            <div className="p-4">
+                <h2 className="font-bold text-xl">{tourists_spot_name}</h2>
+                <h4 className="font-semibold test-[18px] mt-2">Country: {country_Name}</h4>
                 <p className="mt-2">Average_cost: {average_cost}</p>
                 <p className="mt-2">Total Visitors PerYear: {totalVisitorsPerYear}</p>
                 <p className="mt-2">Travel Time: {travel_time}</p>

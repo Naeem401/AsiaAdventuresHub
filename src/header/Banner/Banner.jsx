@@ -13,7 +13,7 @@ import { Autoplay, EffectFade } from 'swiper/modules'
 
 const Banner = () => {
     return (
-        <div>
+        <div className='overflow-hidden w-full'>
             <Swiper
                 effect={"fade"}
                 fadeEffect={{ crossFade: true }}
@@ -29,7 +29,7 @@ const Banner = () => {
             >
                 {/* slide 1 */}
                 <SwiperSlide>
-                    <img src={slider} alt="" />
+                    <img className='w-full overflow-hidden' src={slider} alt="" />
                 </SwiperSlide>
                 {/* slide 2 */}
                 <SwiperSlide>
