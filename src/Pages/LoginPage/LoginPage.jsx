@@ -7,11 +7,12 @@ const LoginPage = () => {
     const {
       signInUser,
       googleSignIn,
+      gitHubSignIn,
       setLoading
     } = useAuth();
       const handleGoogleSignIn = () => {
     googleSignIn()
-      .then((result) => {
+      .then(() => {
         setLoading(false);
         navigate(location?.state ? location.state : "/");
         toast.success("Login successful");
@@ -19,6 +20,18 @@ const LoginPage = () => {
       .catch((err) => {
         setLoading(false);
         toast.error(err.message);
+      });
+  };
+  const handelGitHubSignIn = () => {
+    gitHubSignIn()
+      .then(() => {
+        setLoading(false);
+        navigate(location?.state ? location.state : "/");
+        toast.success("Login successful");
+      })
+      .catch(error => {
+        console.error(error);
+        toast.error(error.message);
       });
   };
     const handelLogin = e => {
@@ -29,7 +42,7 @@ const LoginPage = () => {
         console.log(email, password)
          // Sign In
     signInUser(email, password)
-      .then((result) => {
+      .then(() => {
         setLoading(false);
         navigate(location?.state ? location.state : "/");
         toast.success("Login successful");
@@ -68,7 +81,7 @@ const LoginPage = () => {
                         <button onClick={()=> handleGoogleSignIn()} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
                             Google
                         </button>
-                        <button className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        <button onClick={() => handelGitHubSignIn()} className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             GitHub
                         </button>
                     </div>

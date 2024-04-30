@@ -7,13 +7,11 @@ const Register = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const {
-        user,
         createUser,
         updateUserProfile,
-        loading,
         setLoading,
         googleSignIn,
-        githubSignIn,
+        gitHubSignIn,
     } = useAuth() || {};
 
     const handelRegister = e => {
@@ -26,7 +24,7 @@ const Register = () => {
     
         // Password Validation
         if (
-            !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/.test(
+            !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/.test(
                 password
             )
         ) {
@@ -35,14 +33,7 @@ const Register = () => {
             );
             return;
         }
-    
-        // Email Validation
-        if (!/^\w+([.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-            toast.error("Please enter a valid email");
-            return;
-        }
-    
-        // Create user
+
         createUser(email, password)
             .then((result) => {
                 updateUserProfile({ displayName: name, photoURL: photoURL })
@@ -72,6 +63,18 @@ const Register = () => {
           .catch((err) => {
             setLoading(false);
             toast.error(err.message);
+          });
+      };
+      const handelGitHubSignIn = () => {
+        gitHubSignIn()
+          .then(() => {
+            setLoading(false);
+            navigate(location?.state ? location.state : "/");
+            toast.success("Login successful");
+          })
+          .catch(error => {
+            console.error(error);
+            toast.error(error.message);
           });
       };
     return (
@@ -112,7 +115,7 @@ const Register = () => {
                         <button onClick={() => handleGoogleSignIn()} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
                             Google
                         </button>
-                        <button className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        <button onClick={() => handelGitHubSignIn()} className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             GitHub
                         </button>
                     </div>
