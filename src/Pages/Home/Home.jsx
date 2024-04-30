@@ -10,13 +10,13 @@ const Home = () => {
     const [allTouristsSpot, setAllTouristsSpot] = useState([]);
     useEffect(() => {
         setCountrysLoading(true)
-        fetch('http://localhost:5000/countries')
+        fetch('https://asia-adventures-hub-server.vercel.app/countries')
           .then((res) => res.json())
           .then((data) => {
             setCountrysLoading(false)
             setCountrys(data)
           });
-          fetch('http://localhost:5000/addTouristsSpot')
+          fetch('https://asia-adventures-hub-server.vercel.app/addTouristsSpot')
           .then((res) => res.json())
           .then((data) => setAllTouristsSpot(data));
       }, []);

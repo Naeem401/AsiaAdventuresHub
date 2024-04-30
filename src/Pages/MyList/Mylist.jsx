@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../Hook/useAuth";
 import Banner from "../../header/Banner/Banner";
-import MyListSpotCard from "../../components/MyListSpotCard/MyListSpotCard";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
@@ -9,16 +8,12 @@ const Mylist = () => {
     const { user } = useAuth() || {};
     const [spots, setSpot] = useState([]);
     useEffect(() => {
-      fetch(`http://localhost:5000/myTouristsSpot/${user?.email}`)
+      fetch(`https://asia-adventures-hub-server.vercel.app/myTouristsSpot/${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
           setSpot(data);
         });
     }, [user]);
-    const handleUpdate = (spotId) => {
-     
-      console.log(`Update spot with ID: ${spotId}`);
-    };
     const handleDelete = (id) => {
       Swal.fire({
         title: "Are you sure?",
@@ -35,7 +30,7 @@ const Mylist = () => {
             text: "Your file has been deleted.",
             icon: "success"
           });
-          fetch(`http://localhost:5000/myTouristsSpot/${id}`, {
+          fetch(`https://asia-adventures-hub-server.vercel.app/myTouristsSpot/${id}`, {
         method: 'DELETE'
       })
       .then(res => res.json())

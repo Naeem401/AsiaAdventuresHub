@@ -22,7 +22,7 @@ const UpdateMySpot = () => {
         }
 
       
-        fetch(`http://localhost:5000/addTouristsSpot/${_id}`, {
+        fetch(`https://asia-adventures-hub-server.vercel.app/addTouristsSpot/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
       {
         path: '/update-my-spot/:id',
         element: <UpdateMySpot/>,
-        loader: ({params}) => fetch(`http://localhost:5000/addTouristsSpot/${params.id}`)
+        loader: ({params}) => fetch(`https://asia-adventures-hub-server.vercel.app/addTouristsSpot/${params.id}`)
       },
       {
         path: '/login',

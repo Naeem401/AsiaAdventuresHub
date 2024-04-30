@@ -6,7 +6,7 @@ import TouristsSpot from "../../components/TouristsSpot/TouristsSpot";
 const AllTouristsSpot = () => {
     const [allTouristsSpot, setAllTouristsSpot] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/addTouristsSpot')
+        fetch('https://asia-adventures-hub-server.vercel.app/addTouristsSpot')
         .then((res) => res.json())
         .then((data) => setAllTouristsSpot(data));
     },[])

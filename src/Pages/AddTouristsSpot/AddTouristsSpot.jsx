@@ -20,7 +20,7 @@ const handelSubmit = e => {
         userName, userEmail, tourists_spot_name, country_Name, average_cost, image, location, selectedSeasonality, travel_time, totalVisitorsPerYear, short_description
     }
     console.log(info)
-    fetch("http://localhost:5000/addTouristsSpot", {
+    fetch("https://asia-adventures-hub-server.vercel.app/addTouristsSpot", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body:JSON.stringify(info)
