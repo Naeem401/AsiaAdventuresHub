@@ -21,7 +21,7 @@ const UpdateMySpot = () => {
             userName, tourists_spot_name, country_Name, average_cost, image, location, travel_time, totalVisitorsPerYear, short_description
         }
 
-        // send data to the server
+      
         fetch(`http://localhost:5000/addTouristsSpot/${_id}`, {
             method: 'PUT',
             headers: {

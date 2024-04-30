@@ -58,12 +58,19 @@ const Mylist = () => {
     return (
       <div>
       <Banner />
-      <h2 className="text-2xl font-bold my-4 text-center mt-4">My Tourist Spots List</h2>
+      
+      <div className="container mx-auto py-8 text-center">
+      <h1 className="text-3xl font-bold mb-4">Explore Amazing Tourist Spots</h1>
+      <p className="text-lg text-gray-600 mb-4">
+        Discover breathtaking destinations and must-visit attractions from <br /> around the world.
+        Browse through our curated list of tourist spots and <br /> start planning your next adventure!
+      </p>
+      </div>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-md rounded-lg">
           <thead>
             <tr className="bg-gray-200 text-gray-600 text-sm leading-normal">
-              <th className="py-3 px-6 text-left">Name</th>
+              <th className="py-3 px-6 text-left">Tourists Spot Name</th>
               <th className="py-3 px-6 text-left">Location</th>
               <th className="py-3 px-6 text-left">Description</th>
               <th className="py-3 px-6 text-center">Update</th>
@@ -72,10 +79,10 @@ const Mylist = () => {
           </thead>
           <tbody className="text-gray-600 text-sm font-light">
             {spots.map((spot) => (
-              <tr key={spot.id} className="border-b border-gray-200 hover:bg-gray-100">
-                <td className="py-3 px-6 text-left whitespace-nowrap">{spot.name}</td>
+              <tr key={spot.id} className="border-b border-gray-200 hover:bg-gray-100 font-bold">
+                <td className="py-3 px-6 text-left whitespace-nowrap">{spot.tourists_spot_name}</td>
                 <td className="py-3 px-6 text-left">{spot.location}</td>
-                <td className="py-3 px-6 text-left">{spot.description}</td>
+                <td className="py-3 px-6 text-left">{spot.short_description}</td>
                 <td className="py-3 px-6 text-center">
                  <Link to={`/update-my-spot/${spot._id}`}>
                  <button

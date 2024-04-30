@@ -10,12 +10,8 @@ const NavBar = () => {
     const [sideOpen, setSideOpen] = useState(false);
     const navigate = useNavigate();
     const { user, signOutUser } = useAuth() || {};
-    // State for the theme
     const [theme, setTheme] = useState('light');
-    // State to indicate whether the theme has been loaded from localStorage or not
     const [themeLoaded, setThemeLoaded] = useState(false);
-
-    // update state on toggle
     const handleToggle = e => {
         if (e.target.checked) {
             setTheme('synthwave');
@@ -27,19 +23,15 @@ const NavBar = () => {
     }
 
     useEffect(() => {
-        // Load theme from localStorage when the component mounts
         const localTheme = localStorage.getItem('theme');
         if (localTheme) {
             setTheme(localTheme);
             setThemeLoaded(true);
         } else {
-            // If theme is not found in localStorage, set the theme to light
             localStorage.setItem('theme', 'light');
             setThemeLoaded(true);
         }
     }, []);
-
-    // Update the data-theme attribute when theme changes
     useEffect(() => {
         if (themeLoaded) {
             document.querySelector('html').setAttribute('data-theme', theme);
@@ -53,12 +45,12 @@ const NavBar = () => {
     };
     return (
         <div className="w-full">
-            <header className=" shadow-lg  flex py-4 w-full dark:bg-[#120505] px-2 md:px-[50px] lg:px-[80px] xl:px-[120px] 2xl:px-[150px]">
+            <header className=" shadow-lg  flex py-4 w-full px-2 md:px-[50px] lg:px-[80px]">
                 <Link to='/' className="md:border-r flex flex-shrink-0 items-center">
                     <h2 className="font-bold text-xl mr-2">Asia Adventures Hub</h2>
                 </Link>
                 <nav className="header-links md:contents font-medium text-base  hidden ">
-                    <ul className="flex gap-8 items-center ml-4 xl:ml-8 mr-auto w-full justify-center dark:text-white">
+                    <ul className="flex gap-8 items-center ml-4 xl:ml-8 mr-auto w-full justify-center">
                         <li>
                             <NavLink
                                 to="/"
@@ -101,9 +93,9 @@ const NavBar = () => {
                     </label>
                     {user ? (
                         <div>
-                            <button className="dropdown border-2 border-[#FF497C] rounded-full w-[40px] z-50">
+                            <button className="dropdown border-2 border-[#FF497c] rounded-full w-[40px] z-50">
                                 <img className="rounded-full" src={user?.photoURL} alt="" />
-                                <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                                <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box">
                                     <li><p className="text-lg font-semibold">{user?.displayName}</p></li>
                                     <li> <button
                                         onClick={() => handleLogOut()}
@@ -140,7 +132,7 @@ const NavBar = () => {
                 </button>
             </header>
             <div className={`absolute ${sideOpen ? "" : "hidden"
-                } md:hidden  bg-white shadow-lg  w-56 min-h-screen overflow-y-auto top-0 left-0 ease-in-out duration-300 dark:bg-[#120505] dark:text-white z-50`}>
+                } md:hidden shadow-lg  w-56 min-h-screen top-0 left-0 ease-in-out duration-300 bg-black text-white z-50`}>
                 <div className="p-4">
                     <Link to="/" className=" flex-shrink-0 flex items-center ">
                         <h2>Asia Adventures Hub</h2>
@@ -177,7 +169,7 @@ const NavBar = () => {
                             <NavLink
                                 onClick={() => setSideOpen(!sideOpen)}
                                 to="/my-list"
-                                className={({isActive}) => isActive? 'text-primary font-bold' : 'font-bold text-white'}
+                                className={({isActive}) => isActive? 'text-primary font-bold' : 'font-bold '}
                             >
                                 <span>My List</span>
                             </NavLink>

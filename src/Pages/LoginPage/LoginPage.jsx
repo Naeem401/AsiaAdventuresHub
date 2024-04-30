@@ -5,11 +5,9 @@ import toast from 'react-hot-toast';
 const LoginPage = () => {
     const navigate = useNavigate();
     const {
-      user,
       signInUser,
       googleSignIn,
-      setLoading,
-      loading
+      setLoading
     } = useAuth();
       const handleGoogleSignIn = () => {
     googleSignIn()
@@ -44,25 +42,28 @@ const LoginPage = () => {
     }
     return (
         <div className='object-cover bg-opacity-80 bg-no-repeat min-h-[calc(100vh-46px)] flex justify-center items-center' style={{ backgroundImage: `url(${bg})` }}>
-            <div className='className="shadow-lg p-5 bg-[#1a103d] bg-opacity-30  w-1/3 mx-auto"'>
-                <h1 className="text-2xl font-semibold mb-4 text-center">Login</h1>
+            <div className='className="shadow-lg p-5 bg-[#1a103d] bg-opacity-30  lg:w-1/3 mx-auto"'>
+            <h1 className="text-2xl font-bold mb-4 text-center text-white">Login to Your Account</h1>
+        <p className="text-center text-white mb-4">
+          Please enter your credentials to access your account.
+        </p>
                 <form onSubmit={handelLogin} className="space-y-4">
                     <div>
-                        <label htmlFor="email" className="block mb-1">email</label>
-                        <input type="email" id="email" name="email" className="w-full border bg-gray-300 rounded-md py-2 px-3" />
+                        <label htmlFor="email" className="block mb-1 font-semibold text-white">Email</label>
+                        <input type="email" id="email" name="email" className="w-full border  rounded-md py-2 px-3" />
                     </div>
                     <div>
-                        <label htmlFor="password" className="block mb-1">. Password
+                        <label htmlFor="password" className="block mb-1 font-semibold text-white">Password
                         </label>
-                        <input type="password" id="password" name="password" className="w-full border bg-gray-300 rounded-md py-2 px-3" />
+                        <input type="password" id="password" name="password" className="w-full border  rounded-md py-2 px-3" />
                     </div>
-                    <input type="submit" value="Login" className='btn w-full' />
+                    <input type="submit" value="Login" className='btn w-full font-bold' />
                 </form>
-                <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="2000" className="mt-4">
-                    <p>Don't have an account? <Link to="/register" className="text-blue-500">Register here</Link></p>
+                <div className="mt-4 text-white">
+                    <p>Don't have an account? <Link to="/register" className='text-green-300'>Register here</Link></p>
                 </div>
                 <div className="mt-4">
-                    <p >Or login with:</p>
+                    <p className='text-white'>Or login with:</p>
                     <div>
                         <button onClick={()=> handleGoogleSignIn()} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
                             Google

@@ -18,7 +18,7 @@ const Banner = () => {
                 effect={"fade"}
                 fadeEffect={{ crossFade: true }}
                 slidesPerView={1}
-                spaceBetween={30}
+                // spaceBetween={30}
                 centeredSlides={true}
                 autoplay={{
                     delay: 3000,
@@ -27,15 +27,12 @@ const Banner = () => {
                 modules={[Autoplay, EffectFade]}
                 className="mySwiper"
             >
-                {/* slide 1 */}
                 <SwiperSlide>
                     <img className='w-full overflow-hidden' src={slider} alt="" />
                 </SwiperSlide>
-                {/* slide 2 */}
                 <SwiperSlide>
                     <img src={slider2} alt="" />
                 </SwiperSlide>
-                {/* slide 3 */}
                 <SwiperSlide>
                     <img src={slider3} alt="" />
                 </SwiperSlide>
